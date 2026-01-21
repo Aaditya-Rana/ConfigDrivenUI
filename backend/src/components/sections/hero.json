@@ -1,0 +1,39 @@
+{
+    "collectionName": "components_sections_heroes",
+    "info": {
+        "displayName": "Hero",
+        "icon": "crown",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "heading": {
+            "type": "string"
+        },
+        "subheading": {
+            "type": "text"
+        },
+        "ctaText": {
+            "type": "string"
+        },
+        "ctaLink": {
+            "type": "string"
+        },
+        "backgroundImage": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        },
+        "visibilityRules": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.visibility-rules"
+        }
+    }
+}

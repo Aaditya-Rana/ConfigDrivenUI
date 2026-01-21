@@ -1,0 +1,24 @@
+{
+    "collectionName": "components_sections_card_lists",
+    "info": {
+        "displayName": "Card List",
+        "icon": "list",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "title": {
+            "type": "string"
+        },
+        "cards": {
+            "type": "component",
+            "repeatable": true,
+            "component": "shared.card"
+        },
+        "visibilityRules": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.visibility-rules"
+        }
+    }
+}

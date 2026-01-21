@@ -1,0 +1,20 @@
+{
+    "collectionName": "components_shared_cards",
+    "info": {
+        "displayName": "Card",
+        "icon": "id-card",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "text"
+        },
+        "link": {
+            "type": "string"
+        }
+    }
+}

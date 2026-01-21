@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_shared_visibility_rules",
+  "info": {
+    "displayName": "VisibilityRules",
+    "icon": "eye",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "regions": {
+      "type": "json"
+    },
+    "languages": {
+      "type": "json"
+    },
+    "requiresConsent": {
+      "type": "boolean",
+      "default": false
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

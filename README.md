@@ -49,6 +49,7 @@ This project demonstrates a config-driven UI architecture using Strapi as a Head
 
 ## Documentation
 - [Architecture Overview](docs/architecture.md)
+- [Strapi v5 Setup Guide](docs/strapi-setup.md)
 - [CMS User Guide](docs/cms-user-guide.md)
 - [Developer Guide](docs/developer-guide.md)
 

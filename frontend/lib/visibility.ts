@@ -4,6 +4,7 @@ export interface UserContext {
     region?: string;
     language?: string;
     hasConsent?: boolean;
+    currentLocale?: string; // e.g. 'en', 'es'
 }
 
 export function checkVisibility(rules: VisibilityRules | undefined, context: UserContext): boolean {

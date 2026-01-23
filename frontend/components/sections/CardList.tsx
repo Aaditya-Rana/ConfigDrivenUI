@@ -2,7 +2,19 @@ import React from 'react';
 import Link from 'next/link';
 import { CardListSection } from '../../lib/strapi';
 
-export function CardList({ title, cards }: CardListSection) {
+interface Props extends CardListSection {
+    currentLocale?: string;
+}
+
+export function CardList({ title, cards, currentLocale }: Props) {
+    const getLocalizedLink = (link: string) => {
+        if (!link || link.startsWith('http') || link.startsWith('#')) return link;
+        if (currentLocale && !link.startsWith(`/${currentLocale}`)) {
+            return `/${currentLocale}${link.startsWith('/') ? '' : '/'}${link}`;
+        }
+        return link;
+    };
+
     return (
         <section className="py-24 px-4 bg-gray-50">
             <div className="max-w-7xl mx-auto">
@@ -20,7 +32,7 @@ export function CardList({ title, cards }: CardListSection) {
                             <p className="text-gray-600 mb-8 leading-relaxed text-lg">{card.description}</p>
 
                             {card.link && (
-                                <Link href={card.link} className="inline-flex items-center text-blue-600 font-semibold group-hover:translate-x-1 transition-transform">
+                                <Link href={getLocalizedLink(card.link)} className="inline-flex items-center text-blue-600 font-semibold group-hover:translate-x-1 transition-transform">
                                     Learn more
                                     <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                 </Link>

@@ -10,9 +10,10 @@ export async function fetchAPI(path: string) {
     return response.json();
 }
 
-export async function getPageBySlug(slug: string) {
+export async function getPageBySlug(slug: string, locale: string = 'en') {
     const query = new URLSearchParams({
         'filters[slug][$eq]': slug,
+        'locale': locale,
         'populate[sections][populate]': '*',
         'populate[visibilityRules]': '*',
     });

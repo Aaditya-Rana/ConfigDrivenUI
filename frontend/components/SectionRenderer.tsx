@@ -24,9 +24,9 @@ export function SectionRenderer({ sections, userContext = {} }: Props) {
                     case 'sections.hero':
                         return <Hero key={`${section.__component}-${index}`} {...section} />;
                     case 'sections.card-list':
-                        return <CardList key={`${section.__component}-${index}`} {...section} />;
+                        return <CardList key={`${section.__component}-${index}`} {...section} currentLocale={userContext?.currentLocale} />;
                     case 'sections.link-section':
-                        return <LinkSection key={`${section.__component}-${index}`} {...section} />;
+                        return <LinkSection key={`${section.__component}-${index}`} {...section} currentLocale={userContext?.currentLocale} />;
                     default:
                         const unknownSection = section as any;
                         return (

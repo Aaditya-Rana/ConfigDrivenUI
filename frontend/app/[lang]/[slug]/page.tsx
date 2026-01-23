@@ -1,23 +1,24 @@
-import { getPageBySlug } from '../../lib/strapi';
-import { SectionRenderer } from '../../components/SectionRenderer';
+import { getPageBySlug } from '../../../lib/strapi';
+import { SectionRenderer } from '../../../components/SectionRenderer';
 import { notFound } from 'next/navigation';
-import { UserContext, checkVisibility } from '../../lib/visibility';
+import { UserContext, checkVisibility } from '../../../lib/visibility';
 
 export default async function DynamicPage({
     params,
     searchParams,
 }: {
-    params: Promise<{ slug: string }>;
+    params: Promise<{ slug: string; lang: string }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-    const { slug } = await params;
+    const { slug, lang } = await params;
     const searchParamsValue = await searchParams;
-    const page = await getPageBySlug(slug);
+    const page = await getPageBySlug(slug, lang);
 
     const userContext: UserContext = {
         region: typeof searchParamsValue.region === 'string' ? searchParamsValue.region : undefined,
         language: typeof searchParamsValue.language === 'string' ? searchParamsValue.language : undefined,
         hasConsent: searchParamsValue.consent === 'true',
+        currentLocale: lang,
     };
 
     if (!page) {

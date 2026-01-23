@@ -10,14 +10,28 @@
     "options": {
         "draftAndPublish": true
     },
-    "pluginOptions": {},
+    "pluginOptions": {
+        "i18n": {
+            "localized": true
+        }
+    },
     "attributes": {
         "title": {
-            "type": "string"
+            "type": "string",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
         },
         "slug": {
             "type": "uid",
-            "targetField": "title"
+            "targetField": "title",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
         },
         "sections": {
             "type": "dynamiczone",
@@ -25,12 +39,22 @@
                 "sections.hero",
                 "sections.card-list",
                 "sections.link-section"
-            ]
+            ],
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
         },
         "visibilityRules": {
             "type": "component",
             "repeatable": false,
-            "component": "shared.visibility-rules"
+            "component": "shared.visibility-rules",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
         }
     }
 }

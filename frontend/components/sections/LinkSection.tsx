@@ -2,9 +2,23 @@ import React from 'react';
 import Link from 'next/link';
 import { LinkSection as LinkSectionType } from '../../lib/strapi';
 
-export function LinkSection({ label, url, linkType, openInNewTab }: LinkSectionType) {
+interface Props extends LinkSectionType {
+    currentLocale?: string;
+}
+
+export function LinkSection({ label, url, linkType, openInNewTab, currentLocale }: Props) {
     const target = openInNewTab ? '_blank' : '_self';
     const isExternal = linkType === 'external';
+
+    const getLocalizedLink = (link: string) => {
+        if (isExternal || !link || link.startsWith('http') || link.startsWith('#')) return link;
+        if (currentLocale && !link.startsWith(`/${currentLocale}`)) {
+            return `/${currentLocale}${link.startsWith('/') ? '' : '/'}${link}`;
+        }
+        return link;
+    };
+
+    const finalUrl = getLocalizedLink(url);
 
     const content = (
         <>
@@ -23,7 +37,7 @@ export function LinkSection({ label, url, linkType, openInNewTab }: LinkSectionT
                 <div className="inline-block p-1 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500">
                     {isExternal ? (
                         <a
-                            href={url}
+                            href={finalUrl}
                             target={target}
                             className={className}
                             rel={target === '_blank' ? "noopener noreferrer" : undefined}
@@ -31,7 +45,7 @@ export function LinkSection({ label, url, linkType, openInNewTab }: LinkSectionT
                             {content}
                         </a>
                     ) : (
-                        <Link href={url} className={className} target={target}>
+                        <Link href={finalUrl} className={className} target={target}>
                             {content}
                         </Link>
                     )}

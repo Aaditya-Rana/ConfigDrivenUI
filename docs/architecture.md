@@ -31,11 +31,9 @@ This project uses a **Headless CMS architecture** with **Strapi** as the backend
 5.  **Render**: Valid sections are rendered to the DOM.
 
 ## Visibility Logic
-The application implements client-side visibility filtering.
-- **Source**: `lib/visibility.ts`
-- **Inputs**: `VisibilityRules` (from Strapi) + `UserContext` (from URL Params).
-- **Rules**:
-    - `enabled`: Master switch.
-    - `regions`: Matches `?region=XX`.
-    - `languages`: Matches `?language=xx`.
-    - `requiresConsent`: Checks `?consent=true`.
+The application implements backend-side visibility filtering.
+- **Visibility Rules (Backend Enforced)**:
+    - `Page` and `Section` have a `visibilityRules` component.
+    - Strapi `api::page.page` controller intercepts requests.
+    - Filters out pages/sections based on `region`, `language`, `consent` query params.
+    - **Security**: Restricted content is never sent to the client.

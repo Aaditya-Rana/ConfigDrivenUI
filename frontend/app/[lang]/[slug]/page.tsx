@@ -1,7 +1,6 @@
-import { getPageBySlug } from '../../../lib/strapi';
+import { getPageBySlug, UserContext } from '../../../lib/strapi';
 import { SectionRenderer } from '../../../components/SectionRenderer';
 import { notFound } from 'next/navigation';
-import { UserContext, checkVisibility } from '../../../lib/visibility';
 
 export default async function DynamicPage({
     params,
@@ -12,12 +11,17 @@ export default async function DynamicPage({
 }) {
     const { slug, lang } = await params;
     const searchParamsValue = await searchParams;
-    const page = await getPageBySlug(slug, lang);
 
-    const userContext: UserContext = {
+    const userContext = {
         region: typeof searchParamsValue.region === 'string' ? searchParamsValue.region : undefined,
         language: typeof searchParamsValue.language === 'string' ? searchParamsValue.language : undefined,
         hasConsent: searchParamsValue.consent === 'true',
+    };
+
+    const page = await getPageBySlug(slug, lang, userContext);
+
+    const frontendUserContext = {
+        ...userContext,
         currentLocale: lang,
     };
 
@@ -25,17 +29,10 @@ export default async function DynamicPage({
         notFound();
     }
 
-    if (!checkVisibility(page.visibilityRules, userContext)) {
-        return (
-            <div className="flex items-center justify-center min-h-[60vh]">
-                <h1 className="text-2xl font-bold text-gray-400">Page is disabled or restricted</h1>
-            </div>
-        );
-    }
 
     return (
         <main>
-            <SectionRenderer sections={page.sections} userContext={userContext} />
+            <SectionRenderer sections={page.sections} userContext={frontendUserContext} />
         </main>
     );
 }

@@ -13,6 +13,11 @@ npm install
 npm run develop
 ```
 
+#### API Documentation (Swagger)
+Once the backend is running, you can access the **Swagger UI** to test APIs interactively:
+- URL: [http://localhost:1337/documentation/v1.0.0](http://localhost:1337/documentation/v1.0.0)
+- Configured in: `backend/config/plugins.ts`
+
 #### Database Setup (PostgreSQL)
 
 By default, Strapi uses SQLite. To use PostgreSQL (recommended for production):

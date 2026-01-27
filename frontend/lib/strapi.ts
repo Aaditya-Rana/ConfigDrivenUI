@@ -10,7 +10,13 @@ export async function fetchAPI(path: string) {
     return response.json();
 }
 
-export async function getPageBySlug(slug: string, locale: string = 'en') {
+interface ApiUserContext {
+    region?: string;
+    language?: string;
+    hasConsent?: boolean;
+}
+
+export async function getPageBySlug(slug: string, locale: string = 'en', context?: ApiUserContext) {
     const query = new URLSearchParams({
         'filters[slug][$eq]': slug,
         'locale': locale,
@@ -18,11 +24,22 @@ export async function getPageBySlug(slug: string, locale: string = 'en') {
         'populate[visibilityRules]': '*',
     });
 
+    if (context?.region) query.append('region', context.region);
+    if (context?.language) query.append('language', context.language);
+    if (context?.hasConsent) query.append('hasConsent', 'true');
+
     const data = await fetchAPI(`/pages?${query.toString()}`);
     return data?.data?.[0] || null;
 }
 
 // Types
+export interface UserContext {
+    region?: string;
+    language?: string;
+    hasConsent?: boolean;
+    currentLocale?: string;
+}
+
 export interface VisibilityRules {
     id: number;
     enabled: boolean;

@@ -1,25 +1,24 @@
+// Note: Visibility checks are now handled by the backend!
+// If a section is in the list, it is visible.
+
 import React from 'react';
 import { Hero } from './sections/Hero';
 import { CardList } from './sections/CardList';
 import { LinkSection } from './sections/LinkSection';
-import { Section } from '../lib/strapi';
-import { UserContext, checkVisibility } from '../lib/visibility';
+import { Section, UserContext } from '../lib/strapi';
 
-interface Props {
-    sections: Section[];
-    userContext?: UserContext;
-}
-
-export function SectionRenderer({ sections, userContext = {} }: Props) {
-    if (!sections || sections.length === 0) return null;
+export function SectionRenderer({
+    sections,
+    userContext
+}: {
+    sections: Section[],
+    userContext: UserContext
+}) {
+    if (!sections?.length) return null;
 
     return (
-        <div className="flex flex-col w-full min-h-screen">
+        <div className="flex flex-col gap-16 pb-20">
             {sections.map((section, index) => {
-                if (!checkVisibility(section.visibilityRules, userContext)) {
-                    return null;
-                }
-
                 switch (section.__component) {
                     case 'sections.hero':
                         return <Hero key={`${section.__component}-${index}`} {...section} />;

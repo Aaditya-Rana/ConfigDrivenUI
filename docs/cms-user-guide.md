@@ -18,11 +18,14 @@ The **Sections** field is a Dynamic Zone. You can add components here in any ord
     - **Link Section**: Standalone links.
 - **Reorder**: Drag and drop components to change their display order.
 
-### Visibility Rules
-Every Page and every Section has a `Visibility Rules` component.
-- **Enabled**: Uncheck to hide the content immediately.
-- **Requires Consent**: Check this if the content should only be shown to users who accepted cookies (`?consent=true`).
-- **Regions**: Click "+" to add specific region codes (e.g., `US`, `EU`). Leave empty to show to ALL regions.
+### 2. Visibility Rules
+Most components (and the Page itself) have a `Visibility Rules` tab/component.
+- **Enabled**: Toggle to show/hide.
+- **Requires Consent**: If ON, user must have given consent (passed via `?consent=true`).
+- **Regions**: List of allowed country codes (e.g., `US`, `CA`).
+- **Languages**: List of allowed language codes (e.g., `en`, `es`).
+
+> **Note**: These rules are enforced by the **Backend API**. Restricted content is securely filtered out before it leaves the server. Leave empty to show to ALL regions.
 - **Languages**: Click "+" to add language codes (e.g., `en`, `es`). Leave empty to show to ALL languages.
 
 ## Testing Your Content

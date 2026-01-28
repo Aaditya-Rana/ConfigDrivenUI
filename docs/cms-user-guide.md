@@ -23,9 +23,11 @@ Most components (and the Page itself) have a `Visibility Rules` tab/component.
 - **Enabled**: Toggle to show/hide.
 - **Requires Consent**: If ON, user must have given consent (passed via `?consent=true`).
 - **Regions**: List of allowed country codes (e.g., `US`, `CA`).
-- **Languages**: List of allowed language codes (e.g., `en`, `es`).
+- **Scheduling**:
+    - **Start Time**: Date/Time when this content should start appearing.
+    - **End Time**: Date/Time when this content should stop appearing.
 
-> **Note**: These rules are enforced by the **Backend API**. Restricted content is securely filtered out before it leaves the server. Leave empty to show to ALL regions.
+> **Note**: Language-based visibility is now handled natively by Strapi's Internationalization (i18n) feature (using the Locale dropdown). These rules are enforced by the **Backend API**.
 - **Languages**: Click "+" to add language codes (e.g., `en`, `es`). Leave empty to show to ALL languages.
 
 ## Testing Your Content

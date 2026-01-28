@@ -1,4 +1,4 @@
-const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:3001';
 
 export async function fetchAPI(path: string) {
     const requestUrl = `${STRAPI_URL}/api${path}`;
@@ -45,7 +45,8 @@ export interface VisibilityRules {
     enabled: boolean;
     requiresConsent: boolean;
     regions?: string[];
-    languages?: string[];
+    startTime?: string;
+    endTime?: string;
 }
 
 export interface BaseSection {

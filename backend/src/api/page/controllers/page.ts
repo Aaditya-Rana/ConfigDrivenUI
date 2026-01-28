@@ -12,10 +12,16 @@ function checkVisibility(rules: any, context: any): boolean {
         if (!userRegion || !allowedRegions.includes(userRegion)) return false;
     }
 
-    if (rules.languages && Array.isArray(rules.languages) && rules.languages.length > 0) {
-        const userLang = context.language?.toLowerCase();
-        const allowedLangs = rules.languages.map((l: string) => l.toLowerCase());
-        if (!userLang || !allowedLangs.includes(userLang)) return false;
+    const now = new Date();
+
+    if (rules.startTime) {
+        const start = new Date(rules.startTime);
+        if (now < start) return false;
+    }
+
+    if (rules.endTime) {
+        const end = new Date(rules.endTime);
+        if (now > end) return false;
     }
 
     return true;

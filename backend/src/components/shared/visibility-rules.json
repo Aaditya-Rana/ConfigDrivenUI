@@ -10,8 +10,11 @@
     "regions": {
       "type": "json"
     },
-    "languages": {
-      "type": "json"
+    "startTime": {
+      "type": "datetime"
+    },
+    "endTime": {
+      "type": "datetime"
     },
     "requiresConsent": {
       "type": "boolean",

@@ -6,29 +6,30 @@ This project uses a **Headless CMS architecture** with **Strapi** as the backend
 ## System Components
 
 ### 1. Backend (Strapi)
-- **Role**: Source of Truth for content, configuration, and user permissions.
-- **Key Concepts**:
-    - **Single Types / Collection Types**: define schemas for data (e.g., `Page`).
-    - **Components**: Reusable data structures (e.g., `Hero`, `CardList`).
-    - **Dynamic Zones**: A special field that allows content editors to pick and mix diverse components to build a page layout.
-    - **API**: exposing content via REST endpoints (e.g., `/api/pages`).
+- **Role**: Source of Truth for content and configuration.
+- **Port**: 1337
 
-### 2. Frontend (Next.js)
+### 2. Nest Backend (BFF)
+- **Folder**: `nest_backend/`
+- **Role**: Backend for Frontend (BFF) / Proxy Layer.
+- **Port**: 3001
+- **Structure**:
+    - `src/strapi/`: Contains `StrapiService` and `PageController`.
+- **Responsibilities**:
+    - Proxies requests to Strapi.
+    - Can handle additional aggregation, caching, or auth logic.
+    - Exposes clean API to Frontend.
+
+### 3. Frontend (Next.js)
 - **Role**: Fetches data and renders the UI.
-- **Key Concepts**:
-    - **Client-Side Rendering (CSR)** / **Server-Side Rendering (SSR)** mixed approach.
-    - **Dynamic Routing**: `app/[slug]/page.tsx` catches all page requests and fetches corresponding data.
-    - **Section Renderer**: A "Switch" component that inspects the data type (e.g., `sections.hero`) and renders the matching React component (`<Hero />`).
+- **Port**: 3000
 
 ## Data Flow
 1.  **Request**: User visits `/about`.
-2.  **Route**: Next.js matches `app/[slug]/page.tsx`.
-3.  **Fetch**: Helper `lib/strapi.ts` calls Strapi API: `GET /api/pages?filters[slug]=about&populate=...`.
-4.  **Process**:
-    - Response contains a `sections` array (Dynamic Zone).
-    - `page.tsx` builds a `UserContext` from URL query params.
-    - `SectionRenderer` iterates through `sections`, checking `checkVisibility(rules, context)` for each.
-5.  **Render**: Valid sections are rendered to the DOM.
+2.  **Frontend**: Calls NestJS API: `GET localhost:3001/api/pages?slug=about...`
+3.  **Middleware**: `StrapiService` proxies request to Strapi: `GET localhost:1337/api/pages?...`
+4.  **Backend**: Strapi filters content based on rules and returns JSON.
+5.  **Render**: Frontend receives data and renders `SectionRenderer`.
 
 ## Visibility Logic
 The application implements backend-side visibility filtering.

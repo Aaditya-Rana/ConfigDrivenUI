@@ -81,10 +81,11 @@ export interface SharedVisibilityRules extends Struct.ComponentSchema {
   };
   attributes: {
     enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
-    languages: Schema.Attribute.JSON;
+    endTime: Schema.Attribute.DateTime;
     regions: Schema.Attribute.JSON;
     requiresConsent: Schema.Attribute.Boolean &
       Schema.Attribute.DefaultTo<false>;
+    startTime: Schema.Attribute.DateTime;
   };
 }
 

@@ -33,7 +33,20 @@ By default, Strapi uses SQLite. To use PostgreSQL (recommended for production):
     ```
 3.  Re-run `npm run develop`. Strapi will automatically create tables.
 
-### 2. Frontend Setup (Next.js)
+### 2. Middleware Setup (NestJS)
+
+```bash
+cd nest_backend
+npm install
+npm run start:dev
+```
+
+#### API Documentation (Swagger)
+The NestJS proxy exposes a Swagger UI for API documentation and testing:
+- URL: [http://localhost:3001/api](http://localhost:3001/api)
+
+
+### 3. Frontend Setup (Next.js)
 
 ```bash
 cd frontend

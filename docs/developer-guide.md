@@ -134,3 +134,27 @@ To add a new UI section (e.g., a "Testimonial" slider), you need to touch both B
 - Restart Next.js dev server.
 - Add the new component to a page in Strapi.
 - Check if it renders at `http://localhost:3000`.
+
+## 🚀 Config-Driven Journeys
+
+The "Journey" feature allows for dynamic, logic-driven questionnaire flows.
+
+### Architecture
+1.  **Strapi (Content)**: Defines `Screens` (Questions/Content) and `Journeys` (Flow Entry).
+    - `Journey` -> has one `startScreen`.
+    - `Screen` -> has `transitions` (rules) pointing to other screens.
+2.  **NestJS (BFF Logic)**:
+    - **`JourneyService`**: Does the heavy lifting. It fetches the current screen, evaluates user answers against `transitions` rules, and determines the next step.
+    - **API**: `POST /api/journey/next` takes `{ currentScreenId, answers }` and returns the next screen.
+3.  **Next.js (Frontend)**:
+    - **`ScreenRenderer`**: A "dumb" component that renders the block type (`Question`, `Info`, `Summary`) based on the API response.
+    - **State**: The frontend holds the temporary session state (answers) to send back to the BFF.
+
+### Extending Journeys
+- **New Question Type**:
+    1.  Update Strapi `shared.question` component (add enum option).
+    2.  Update Frontend `QuestionBlock.tsx` to render the input.
+- **New Operator**:
+    1.  Update Strapi `shared.transition` component (add enum option).
+    2.  Update NestJS `JourneyService.evaluateRule()` to handle the logic.
+

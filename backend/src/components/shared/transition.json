@@ -1,0 +1,42 @@
+{
+    "collectionName": "components_shared_transitions",
+    "info": {
+        "displayName": "Transition",
+        "icon": "arrow-right",
+        "description": "Rule to determine the next screen"
+    },
+    "options": {},
+    "attributes": {
+        "field": {
+            "type": "string",
+            "description": "The variable name to check (e.g. 'region')"
+        },
+        "operator": {
+            "type": "enumeration",
+            "enum": [
+                "equals",
+                "not_equals",
+                "in",
+                "not_in",
+                "contains",
+                "not_contains",
+                "greater_than",
+                "less_than",
+                "greater_than_or_equal",
+                "less_than_or_equal",
+                "starts_with",
+                "ends_with"
+            ],
+            "default": "equals"
+        },
+        "value": {
+            "type": "string",
+            "description": "The value to compare against"
+        },
+        "targetScreen": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::screen.screen"
+        }
+    }
+}

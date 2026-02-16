@@ -1,13 +1,12 @@
 import { Module } from '@nestjs/common';
-import { HttpModule } from '@nestjs/axios';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { StrapiService } from './strapi/strapi.service';
-import { PageController } from './strapi/page.controller';
+import { StrapiModule } from './strapi/strapi.module';
+import { JourneyModule } from './journey/journey.module';
 
 @Module({
-  imports: [HttpModule],
-  controllers: [AppController, PageController],
-  providers: [AppService, StrapiService],
+  imports: [StrapiModule, JourneyModule],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule { }

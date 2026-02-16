@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.local
+.tmp/
+dist/
+build/
+.cache/
+.next/
+public/uploads/
+*.log
+.DS_Store
+.strapi/

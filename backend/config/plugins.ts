@@ -6,9 +6,12 @@ export default ({ env }) => ({
                 baseUrl: env('R2_PUBLIC_URL'),
                 rootPath: env('R2_ROOT_PATH'),
                 s3Options: {
-                    accessKeyId: env('R2_ACCESS_KEY_ID'),
-                    secretAccessKey: env('R2_ACCESS_SECRET'),
+                    credentials: {
+                        accessKeyId: env('R2_ACCESS_KEY_ID'),
+                        secretAccessKey: env('R2_ACCESS_SECRET'),
+                    },
                     endpoint: env('R2_ENDPOINT'),
+                    region: env('R2_REGION', 'auto'),
                     params: {
                         Bucket: env('R2_BUCKET'),
                     },

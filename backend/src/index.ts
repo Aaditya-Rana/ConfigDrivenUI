@@ -16,5 +16,7 @@ export default {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  async bootstrap({ strapi }: { strapi: Core.Strapi }) { },
+  async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    // Seeding logic removed as requested
+  },
 };

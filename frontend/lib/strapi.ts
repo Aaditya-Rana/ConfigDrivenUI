@@ -20,7 +20,8 @@ export async function getPageBySlug(slug: string, locale: string = 'en', context
     const query = new URLSearchParams({
         'filters[slug][$eq]': slug,
         'locale': locale,
-        'populate[sections][populate]': '*',
+        'populate[sections][on][sections.hero][populate]': '*',
+        'populate[sections][on][sections.card-list][populate][cards][populate]': '*',
         'populate[visibilityRules]': '*',
     });
 
@@ -38,6 +39,14 @@ export interface UserContext {
     language?: string;
     hasConsent?: boolean;
     currentLocale?: string;
+}
+
+export interface StrapiImage {
+    id: number;
+    url: string;
+    alternativeText?: string;
+    width?: number;
+    height?: number;
 }
 
 export interface VisibilityRules {
@@ -62,9 +71,7 @@ export interface HeroSection extends BaseSection {
     ctaText: string;
     ctaLink: string;
     backgroundImage?: {
-        data: {
-            url: string;
-        } | null;
+        data: StrapiImage | null;
     };
 }
 
@@ -73,6 +80,7 @@ export interface Card {
     title: string;
     description: string;
     link: string;
+    image?: StrapiImage | { data: StrapiImage | null };
 }
 
 export interface CardListSection extends BaseSection {

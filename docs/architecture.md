@@ -38,3 +38,10 @@ The application implements backend-side visibility filtering.
     - Strapi `api::page.page` controller intercepts requests.
     - Filters out pages/sections based on `region`, `language`, `consent` query params.
     - **Security**: Restricted content is never sent to the client.
+
+## Journey Logic (Onboarding)
+- **Goal**: Dynamic questionnaire flow.
+- **Components**:
+    - **Strapi**: Stores `Screens` (Questions) and `Transitions`.
+    - **NestJS (`JourneyService`)**: Evaluates logic (e.g., `experience > 5`) and determines the next screen. This keeps the frontend "dumb" and prevents clients from seeing the entire decision tree.
+    - **Frontend (`ScreenRenderer`)**: Renders the question block based on the type returned by the BFF.

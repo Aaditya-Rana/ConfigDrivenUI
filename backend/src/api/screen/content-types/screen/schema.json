@@ -1,0 +1,48 @@
+{
+    "kind": "collectionType",
+    "collectionName": "screens",
+    "info": {
+        "singularName": "screen",
+        "pluralName": "screens",
+        "displayName": "Screen",
+        "description": "A single step in a journey"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "slug": {
+            "type": "uid",
+            "targetField": "title",
+            "required": true
+        },
+        "type": {
+            "type": "enumeration",
+            "enum": [
+                "question",
+                "info",
+                "summary"
+            ],
+            "default": "question",
+            "required": true
+        },
+        "blocks": {
+            "type": "dynamiczone",
+            "components": [
+                "shared.question",
+                "sections.hero",
+                "sections.card-list"
+            ]
+        },
+        "transitions": {
+            "type": "component",
+            "repeatable": true,
+            "component": "shared.transition"
+        }
+    }
+}

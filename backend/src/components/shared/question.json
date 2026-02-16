@@ -1,0 +1,36 @@
+{
+    "collectionName": "components_shared_questions",
+    "info": {
+        "displayName": "Question",
+        "icon": "question",
+        "description": "A question to ask the user"
+    },
+    "options": {},
+    "attributes": {
+        "label": {
+            "type": "string",
+            "required": true
+        },
+        "variableName": {
+            "type": "string",
+            "required": true,
+            "description": "The key to store the answer in (e.g. 'region', 'language')"
+        },
+        "type": {
+            "type": "enumeration",
+            "enum": [
+                "single_choice",
+                "multiple_choice",
+                "text",
+                "number"
+            ],
+            "default": "single_choice",
+            "required": true
+        },
+        "options": {
+            "type": "component",
+            "repeatable": true,
+            "component": "shared.option"
+        }
+    }
+}

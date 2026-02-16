@@ -2,6 +2,8 @@
 
 This guide explains how to manage content in Strapi for the Config-Driven UI.
 
+> **New Feature**: For creating interactive questionnaires, see the [Journey Creation Guide](./journey-guide.md).
+
 ## Login
 Access the Admin Panel at: `http://localhost:1337/admin`
 

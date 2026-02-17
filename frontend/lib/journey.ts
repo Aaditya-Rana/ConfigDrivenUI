@@ -70,3 +70,14 @@ export async function getNextScreen(currentScreenDocumentId: string, answers: Re
         return null;
     }
 }
+
+export async function getJourneyGraph(slug: string): Promise<{ nodes: any[], edges: any[] } | null> {
+    try {
+        const response = await fetch(`${NEST_API_URL}/api/journey/${slug}/graph`, { cache: 'no-store' });
+        if (!response.ok) throw new Error('Failed to fetch journey graph');
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}

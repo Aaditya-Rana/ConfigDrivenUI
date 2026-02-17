@@ -1,0 +1,41 @@
+{
+    "collectionName": "components_shared_conditions",
+    "info": {
+        "displayName": "Condition",
+        "icon": "filter",
+        "description": "A single logical condition to evaluate"
+    },
+    "options": {},
+    "attributes": {
+        "field": {
+            "type": "string",
+            "required": true
+        },
+        "operator": {
+            "type": "enumeration",
+            "enum": [
+                "equals",
+                "not_equals",
+                "in",
+                "not_in",
+                "contains",
+                "not_contains",
+                "greater_than",
+                "less_than",
+                "greater_than_or_equal",
+                "less_than_or_equal",
+                "starts_with",
+                "ends_with",
+                "intersects",
+                "contains_all",
+                "equals_set"
+            ],
+            "default": "equals",
+            "required": true
+        },
+        "value": {
+            "type": "string",
+            "required": true
+        }
+    }
+}

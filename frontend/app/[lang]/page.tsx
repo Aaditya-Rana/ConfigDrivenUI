@@ -44,7 +44,7 @@ export default async function HomePage({
     <main>
       <div className="bg-blue-50 border-b border-blue-100 p-4 text-center">
         <p className="text-blue-800 font-medium inline-block mr-4">🚀 New Feature: Config-Driven Onboarding</p>
-        <a href={`/${lang}/journey/onboarding`} className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+        <a href={`/${lang}/journey/comprehensive-demo`} className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
           Start Journey
         </a>
       </div>

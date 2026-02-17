@@ -73,6 +73,40 @@ export interface SharedCard extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedCondition extends Struct.ComponentSchema {
+  collectionName: 'components_shared_conditions';
+  info: {
+    description: 'A single logical condition to evaluate';
+    displayName: 'Condition';
+    icon: 'filter';
+  };
+  attributes: {
+    field: Schema.Attribute.String & Schema.Attribute.Required;
+    operator: Schema.Attribute.Enumeration<
+      [
+        'equals',
+        'not_equals',
+        'in',
+        'not_in',
+        'contains',
+        'not_contains',
+        'greater_than',
+        'less_than',
+        'greater_than_or_equal',
+        'less_than_or_equal',
+        'starts_with',
+        'ends_with',
+        'intersects',
+        'contains_all',
+        'equals_set',
+      ]
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'equals'>;
+    value: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedOption extends Struct.ComponentSchema {
   collectionName: 'components_shared_options';
   info: {
@@ -113,26 +147,10 @@ export interface SharedTransition extends Struct.ComponentSchema {
     icon: 'arrow-right';
   };
   attributes: {
-    field: Schema.Attribute.String;
-    operator: Schema.Attribute.Enumeration<
-      [
-        'equals',
-        'not_equals',
-        'in',
-        'not_in',
-        'contains',
-        'not_contains',
-        'greater_than',
-        'less_than',
-        'greater_than_or_equal',
-        'less_than_or_equal',
-        'starts_with',
-        'ends_with',
-      ]
-    > &
-      Schema.Attribute.DefaultTo<'equals'>;
+    conditions: Schema.Attribute.Component<'shared.condition', true>;
     targetScreen: Schema.Attribute.Relation<'oneToOne', 'api::screen.screen'>;
-    value: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['AND', 'OR']> &
+      Schema.Attribute.DefaultTo<'AND'>;
   };
 }
 
@@ -160,6 +178,7 @@ declare module '@strapi/strapi' {
       'sections.hero': SectionsHero;
       'sections.link-section': SectionsLinkSection;
       'shared.card': SharedCard;
+      'shared.condition': SharedCondition;
       'shared.option': SharedOption;
       'shared.question': SharedQuestion;
       'shared.transition': SharedTransition;

@@ -34,17 +34,12 @@ export class JourneyController {
         }
     })
     async getNextScreen(@Body() body: { currentScreenDocumentId: string, answers: Record<string, any> }) {
-        const nextScreen = await this.journeyService.getNextScreen(body.currentScreenDocumentId, body.answers);
+        return await this.journeyService.getNextScreen(body.currentScreenDocumentId, body.answers);
+    }
 
-        if (!nextScreen) {
-            return {
-                finished: true,
-                message: 'Journey completed or no transition found.'
-            };
-        }
-
-        return {
-            screen: nextScreen
-        };
+    @Get(':slug/graph')
+    @ApiOperation({ summary: 'Get full journey graph for visualization' })
+    async getJourneyGraph(@Param('slug') slug: string) {
+        return this.journeyService.getJourneyGraph(slug);
     }
 }

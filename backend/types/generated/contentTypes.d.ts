@@ -532,7 +532,7 @@ export interface ApiScreenScreen extends Struct.CollectionTypeSchema {
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['shared.question', 'sections.hero', 'sections.card-list']
+      ['shared.question', 'sections.hero', 'sections.card-list', 'shared.card']
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

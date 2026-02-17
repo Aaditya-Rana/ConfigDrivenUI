@@ -17,6 +17,5 @@ export default {
    * run jobs, or perform some special logic.
    */
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
-    // Seeding logic removed as requested
   },
 };

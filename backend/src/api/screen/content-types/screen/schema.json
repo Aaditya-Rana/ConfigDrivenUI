@@ -36,7 +36,8 @@
             "components": [
                 "shared.question",
                 "sections.hero",
-                "sections.card-list"
+                "sections.card-list",
+                "shared.card"
             ]
         },
         "transitions": {

@@ -7,31 +7,18 @@
     },
     "options": {},
     "attributes": {
-        "field": {
-            "type": "string",
-            "description": "The variable name to check (e.g. 'region')"
+        "conditions": {
+            "type": "component",
+            "repeatable": true,
+            "component": "shared.condition"
         },
-        "operator": {
+        "type": {
             "type": "enumeration",
             "enum": [
-                "equals",
-                "not_equals",
-                "in",
-                "not_in",
-                "contains",
-                "not_contains",
-                "greater_than",
-                "less_than",
-                "greater_than_or_equal",
-                "less_than_or_equal",
-                "starts_with",
-                "ends_with"
+                "AND",
+                "OR"
             ],
-            "default": "equals"
-        },
-        "value": {
-            "type": "string",
-            "description": "The value to compare against"
+            "default": "AND"
         },
         "targetScreen": {
             "type": "relation",

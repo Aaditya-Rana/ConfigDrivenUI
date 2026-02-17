@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2026-02-16T08:59:36.104Z"
+    "x-generation-date": "2026-02-17T10:17:15.528Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -3162,6 +3162,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/SectionsCardListComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SharedCardComponent"
                     }
                   ]
                 },
@@ -3170,7 +3173,8 @@
                   "mapping": {
                     "shared.question": "#/components/schemas/SharedQuestionComponent",
                     "sections.hero": "#/components/schemas/SectionsHeroComponent",
-                    "sections.card-list": "#/components/schemas/SectionsCardListComponent"
+                    "sections.card-list": "#/components/schemas/SectionsCardListComponent",
+                    "shared.card": "#/components/schemas/SharedCardComponent"
                   }
                 }
               },
@@ -3748,6 +3752,12 @@
               }
             ]
           },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "shared.card"
+            ]
+          },
           "title": {
             "type": "string"
           },
@@ -3963,7 +3973,7 @@
           }
         }
       },
-      "SharedTransitionComponent": {
+      "SharedConditionComponent": {
         "type": "object",
         "properties": {
           "id": {
@@ -3993,11 +4003,42 @@
               "greater_than_or_equal",
               "less_than_or_equal",
               "starts_with",
-              "ends_with"
+              "ends_with",
+              "intersects",
+              "contains_all",
+              "equals_set"
             ]
           },
           "value": {
             "type": "string"
+          }
+        }
+      },
+      "SharedTransitionComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              }
+            ]
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedConditionComponent"
+            }
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "AND",
+              "OR"
+            ]
           },
           "targetScreen": {
             "type": "object",
@@ -4041,6 +4082,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/SectionsCardListComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SharedCardComponent"
                     }
                   ]
                 },
@@ -4049,7 +4093,8 @@
                   "mapping": {
                     "shared.question": "#/components/schemas/SharedQuestionComponent",
                     "sections.hero": "#/components/schemas/SectionsHeroComponent",
-                    "sections.card-list": "#/components/schemas/SectionsCardListComponent"
+                    "sections.card-list": "#/components/schemas/SectionsCardListComponent",
+                    "shared.card": "#/components/schemas/SharedCardComponent"
                   }
                 }
               },
@@ -4552,6 +4597,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/SectionsCardListComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SharedCardComponent"
                     }
                   ]
                 },
@@ -4560,7 +4608,8 @@
                   "mapping": {
                     "shared.question": "#/components/schemas/SharedQuestionComponent",
                     "sections.hero": "#/components/schemas/SectionsHeroComponent",
-                    "sections.card-list": "#/components/schemas/SectionsCardListComponent"
+                    "sections.card-list": "#/components/schemas/SectionsCardListComponent",
+                    "shared.card": "#/components/schemas/SharedCardComponent"
                   }
                 }
               },
@@ -4673,6 +4722,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SectionsCardListComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SharedCardComponent"
                 }
               ]
             },
@@ -4681,7 +4733,8 @@
               "mapping": {
                 "shared.question": "#/components/schemas/SharedQuestionComponent",
                 "sections.hero": "#/components/schemas/SectionsHeroComponent",
-                "sections.card-list": "#/components/schemas/SectionsCardListComponent"
+                "sections.card-list": "#/components/schemas/SectionsCardListComponent",
+                "shared.card": "#/components/schemas/SharedCardComponent"
               }
             }
           },

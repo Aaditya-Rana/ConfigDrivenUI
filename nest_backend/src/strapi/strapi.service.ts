@@ -6,7 +6,7 @@ import qs from 'qs';
 @Injectable()
 export class StrapiService {
     private readonly logger = new Logger(StrapiService.name);
-    private readonly STRAPI_URL = 'http://localhost:1337/api';
+    private readonly STRAPI_URL = process.env.STRAPI_URL ?? 'http://localhost:1337/api';
 
     constructor(private readonly httpService: HttpService) { }
 

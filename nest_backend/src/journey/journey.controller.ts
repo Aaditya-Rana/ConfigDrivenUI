@@ -1,22 +1,29 @@
-import { Body, Controller, Get, Param, Post, NotFoundException } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  NotFoundException,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
 import { JourneyService } from './journey.service';
 
 @ApiTags('journey')
 @Controller('api/journey')
 export class JourneyController {
-    constructor(private readonly journeyService: JourneyService) { }
+  constructor(private readonly journeyService: JourneyService) {}
 
-    @Get(':slug/start')
-    @ApiOperation({ summary: 'Start a journey by slug' })
-    async startJourney(@Param('slug') slug: string) {
-        const journey = await this.journeyService.getJourneyBySlug(slug);
-        return {
-            journeyId: journey.id,
-            journeyName: journey.name,
-            screen: journey.startScreen
-        };
-    }
+  @Get(':slug/start')
+  @ApiOperation({ summary: 'Start a journey by slug' })
+  async startJourney(@Param('slug') slug: string) {
+    const journey = await this.journeyService.getJourneyBySlug(slug);
+    return {
+      journeyId: journey.id,
+      journeyName: journey.name,
+      screen: journey.startScreen,
+    };
+  }
 
     @Post('next')
     @ApiOperation({ summary: 'Get next screen based on answers' })

@@ -73,7 +73,13 @@ export default function JourneyVisualizer({ slug }: JourneyVisualizerProps) {
 
                 const styledNodes = layoutedNodes.map(node => ({
                     ...node,
-                    style: { background: '#fff', border: '1px solid #777', padding: 10, borderRadius: 5, width: 180 }
+                    // React Flow's default node renderer reads from data.label,
+                    // so copy our backend's label field into data.label.
+                    data: {
+                        ...node.data,
+                        label: node.data?.label ?? node.label,
+                    },
+                    style: { background: '#fff', border: '1px solid #777', padding: 10, borderRadius: 5, width: 180 },
                 }));
 
                 const styledEdges = layoutedEdges.map(edge => ({

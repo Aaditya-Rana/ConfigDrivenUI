@@ -114,7 +114,8 @@ export class JourneyService {
 
             nodes.set(currentId, {
                 id: currentId,
-                label: screen.name || 'Untitled Screen',
+                // Prefer explicit title, then slug, then a generic fallback
+                label: screen.title || screen.slug || 'Untitled Screen',
                 type: 'default',
                 data: {
                     blocks: screen.blocks

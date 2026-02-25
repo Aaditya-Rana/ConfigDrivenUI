@@ -53,4 +53,8 @@ export default ({ env }) => ({
             security: [{ bearerAuth: [] }],
         },
     },
+    'journey-visualizer': {
+        enabled: true,
+        resolve: './src/plugins/journey-visualizer'
+    },
 });
